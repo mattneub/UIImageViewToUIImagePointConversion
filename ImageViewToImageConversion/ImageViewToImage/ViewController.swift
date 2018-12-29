@@ -52,6 +52,7 @@ func delay(_ delay:Double, closure:@escaping ()->()) {
 
 class ViewController: UIViewController {
     @IBAction func tap(_ sender:UITapGestureRecognizer) {
+        print("tap")
         let p = sender.location(in: sender.view!)
         let iv = sender.view as! UIImageView
         let p2 = iv.convertPointToImageCoordinates(p)
@@ -61,11 +62,16 @@ class ViewController: UIViewController {
             im.draw(at:.zero)
             UIBezierPath(rect: CGRect(origin:p2, size:im.size)).fill()
         }
-        delay(0.1) {
+        iv.image = im2
+        delay(0.05) {
+            iv.image = nil
             iv.image = im2
             delay(1) {
-                iv.image = nil
                 iv.image = im
+                delay(0.05) {
+                    iv.image = nil
+                    iv.image = im
+                }
             }
         }
     }
