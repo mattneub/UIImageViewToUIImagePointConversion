@@ -64,6 +64,7 @@ class ViewController: UIViewController {
         delay(0.1) {
             iv.image = im2
             delay(1) {
+                iv.image = nil
                 iv.image = im
             }
         }
